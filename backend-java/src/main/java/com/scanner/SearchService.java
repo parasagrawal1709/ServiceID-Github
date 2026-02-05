@@ -16,7 +16,9 @@ public class SearchService {
 
         Files.walk(Paths.get(repoPath))
                 .filter(Files::isRegularFile)
-                .filter(p -> p.toString().endsWith(".java"))
+                .filter(p ->
+                        p.toString().matches(".*\\.(java|yml|yaml|properties|sh|md|xml|json)$")
+                )
                 .forEach(path -> scanFile(path, serviceId, results));
 
         return results;
